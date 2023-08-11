@@ -13,12 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // tạo bộ csdl mẫu
-        // DB <=> SELECT*FROM
-        DB::table('users')->insert([
-            'name'=>'dai1',
-            'email'=>'dai9zpp1',
-            'password'=>bcrypt('1233451')
-        ]);
+        \App\Models\Tin::factory()->count(50)->create();
     }
 }

@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TinController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Schema;use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('daipham', function(){
-    return "Hello World";
+    return "Hello World111";
 });
 
 Route::get('daipham/{name}', function($ten){
@@ -265,3 +266,19 @@ Route::get('thu', function (){
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::get('logout', [AuthController::class, 'logout']);
+
+Route::group(['middleware' => ['web']], function () {
+   Route::get('Session', function (){
+       Session::put(1, 'Laravel');
+       echo "da dat ss";
+       echo "<br>";
+//       echo Session::get('KhoaHoc');
+        if(Session::has(1)){
+            echo Session::get(1);
+        } else {
+            echo "Khóa học ko tồn tại";
+        }
+   });
+});
+
+Route::get('tin', [TinController::class, 'index']);
